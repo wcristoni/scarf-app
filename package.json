@@ -4,12 +4,13 @@
   "description": "This project is project in JavaScript which connect in MongoDB Database and do simple test.",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wcristoni/scarf.git"
+    "url": "git+https://github.com/wcristoni/scarf-app.git"
   },
   "keywords": [
     "JavaScript",
@@ -19,9 +20,9 @@
   "author": "Wilson Cristoni Neto",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wcristoni/scarf/issues"
+    "url": "https://github.com/wcristoni/scarf-app/issues"
   },
-  "homepage": "https://github.com/wcristoni/scarf#readme",
+  "homepage": "https://github.com/wcristoni/scarf-app#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "dotenv": "^7.0.0",
