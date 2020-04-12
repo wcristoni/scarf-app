@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+var path = require('path');
+
 const app = express(); 
 
 var dotenv = require('dotenv' );
@@ -21,8 +23,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 var helmet = require('helmet');
 app.use(helmet())
 
-console.log(__dirname + '/public' );
-app.use(express.static(__dirname + '/public')); 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res)=>{
     res.render('login.ejs', {data:{'acaoLogin': '0'}});
