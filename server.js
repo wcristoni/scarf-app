@@ -46,7 +46,17 @@ app.set('view engine', 'ejs');
 var porta = process.env.PORT || 8081;
 
 app.listen(porta, function(){
+    console.log('##########################################')
+    console.log('------------------------------------------')
     console.log('A aplicação está rodando na porta ' + porta + '!');
+    console.log('------------------------------------------')
+    console.log('Conexao com o DataBase..................: ' + (process.env.MONGO_DB != ''));
+    console.log('------------------------------------------')
+    console.log('Conexao com o Collection................: ' + process.env.CLIENT_DB);
+    console.log('------------------------------------------')
+    console.log('Chave de criptografia está presente?      ' + (process.env.CRIPTO_KEY != '').toString());
+    console.log('------------------------------------------')
+    console.log('##########################################')
 });
 
 function validar(err){
