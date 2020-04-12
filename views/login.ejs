@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset=”utf-8″>
+        <meta name=”viewport” content=”width=device-width, initial-scale=1, shrink-to-fit=no”>
+		<title>SCARF | Controle de Acesso</title>
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" crossorigin="anonymous">
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+		<script type="text/javascript">
+
+			window.history.forward(1);
+
+            function ocultar_div(){
+                $('#dialog-1').hide();
+                $('#dialog-2').hide();
+            }
+
+            $(window).on('load',function(){
+                ocultar_div();
+
+				var iAcaoLogin = parseInt(document.getElementById('acaoLogin').value);
+				
+                if (iAcaoLogin == 1){
+					// alert('usuário não encontrado');
+					
+                    $( "#dialog-1" ).dialog({
+                            resizable: false,
+                            height:220,
+
+                            modal: true,
+
+                            buttons: {
+                                "Ok": function() {
+                                    $( this ).dialog( "close" );
+                                }
+                            }
+                        });
+                } 
+
+                else if (iAcaoLogin == 2){
+					// alert('senha incorreta');
+                    $( "#dialog-2" ).dialog({
+                            resizable: false,
+                            height:220,
+                            
+                            modal: true,
+
+                            buttons: {
+                                "Ok": function() {
+                                    $( this ).dialog( "close" );
+                                }
+                            }
+                        });
+                }
+                    
+            });
+        </script>
+    </head>
+<body>
+<div class="container">
+    <br><br>
+	<div class="d-flex justify-content-center h-100">
+		<div class="card" style="box-shadow: lightgray 2px 2px 1px">
+			<div class="card-header">
+				<p ></p>
+				<table>
+					<tr>
+						<td width="160"><div class="text-center"><h6>Controle de Acesso</h6></div></td>
+						<td width="50"><img src="https://www.vippng.com/png/detail/8-87659_clipart-big-image-png-transparent-background-user-icon.png" height="50" width="50" style="border-style: solid;border:0.5;border-color: darkgray;"></td>
+					</tr>
+				</table>
+				<!--div class="d-flex justify-content-end social_icon"></div-->
+			</div>
+			<div class="card-body">
+				<form action="/validacao" method="POST">
+
+					
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" name="login" id="login" class="form-control" placeholder="Login ou Matrícula"  value="<%= (data.login == undefined) ? '' : data.login %>" required>
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" name="senha" id="senha" class="form-control" placeholder="senha" required>
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Login" class="btn btn-primary btn-md btn-block">
+					</div>
+					<input type="hidden" id="acaoLogin" name="acaoLogin" value="<%= (data.acaoLogin == undefined) ? 0 : data.acaoLogin %>">
+				</form>
+				<form action="/cadastro" method="POST">
+					<hr>
+					<div class="form-group">
+						<table>
+							<tr>
+								<td width="50">
+									<div class="text-left">
+										<img src="https://www.vippng.com/png/detail/363-3634713_picture-freeuse-add-employee-svg-png-icon-free.png" height="45" width="45">
+									</div>	
+								</td>
+								<td width="160">
+									<div class="text-right">
+										<input type="submit" value="Nova Conta" class="btn btn-outline-secondary  btn-sm" style="width: 150px;">
+										<input type="hidden" id="acao" name="acao" value="0">
+									</div>
+								</td>
+							</tr>
+						</table>		
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="text-center font-weight-light">
+					Pesquisa SCARF
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="dialog-1" title="Erro" hide="true">
+	<small>
+		<p>Usuário não encontrado.</p>
+		<p>Por favor, verifique as informações e tente novamente.</p>
+	</small>
+</div>
+
+<div id="dialog-2" title="Erro" hide="true">
+	<small>
+		<p>Senha Incorreta.</p>
+		<p>Por favor, verifique as informações e tente novamente.</p>
+	</small>
+</div>
+
+</body>
+</html>

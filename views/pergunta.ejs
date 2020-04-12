@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset=”utf-8″>
+    <meta name=”viewport” content=”width=device-width, initial-scale=1, shrink-to-fit=no”>
+    <title>SCARF | Situações</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <style type="text/css">
+        input[type="radio"]{display:none}
+        input[type="radio"]+label{font-size: 14px;border-radius: 100px; background: #ddd;color: #999;padding: 5px 15px;}
+        input[type="radio"]:checked+label{font-size: 14px;border-radius: 100px; background: rgb(6, 89, 191);color: #fff;padding: 5px 15px;}
+    </style>
+
+    <script type="text/javascript">
+        
+        window.history.forward(1);
+
+        function validarValor(objeto){
+            var prefixo = objeto.id.substring(0,2);
+            var elemento = objeto.id.slice(-1);
+
+            //console.log("id= " + objeto.id + "\nvalue= " +  objeto.value + "\nprefixo= " + prefixo + "\nelemento= " + elemento);
+
+            for(var i=1; i<6;i++){
+                if (i != elemento){
+                    var check = document.getElementById(prefixo+i.toString()).checked;
+                    document.getElementById(prefixo+i.toString()).checked = false;
+                    
+                    if (check != document.getElementById(prefixo+i.toString()).checked)
+                        document.getElementById('v'+i.toString()).value = "";
+
+                }
+            }
+
+            document.getElementById('v'+elemento.toString()).value = objeto.value;
+
+        }
+
+        function EnviarPesquisa(){
+            var ctrl = 0;
+            for(var i=1; i<6;i++){
+                
+                if (document.getElementsByName('v'+i.toString())[0].value == ""){
+                    ctrl = 1;
+                }                
+            }
+
+            if (ctrl == 1)
+                alert('Nem todas as respostas foram informadas.\nPor favor, complete o formulário e envie novamente.');
+            else  
+                document.forms[0].submit();
+        }
+    </script>
+</head>
+
+<body style="font-size: 1rem;">
+
+    <div id="rodape"  class="container-fluid">
+        <h2><strong>Situação <%= data.pergunta %></strong><h2>
+    </div>
+    
+    <form action="/pergunta" method="POST">
+        
+        <input type="hidden" name="pergunta" id="pergunta" value="<%= data.pergunta %>">
+        <input type="hidden" name="usuario" id="usuario" value="<%= data.usuario %>">
+
+        <p class="container-fluid">
+            <strong><%= data.questao.titulo %></strong>
+        </p>
+        <div id="geral" class="container-fluid">
+            
+            <table class="table table-striped">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Opções</th>
+                        <th scope="col" width="260">Selecione uma opção por linha</td>
+                        <th scope="col" width="30"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row"><%= data.questao.a %></td>
+                        <td width="260">
+                                <input type="radio" name="1" id="i11" value="1" onclick="javascript:validarValor(this)">
+                                <label for="i11">1</label>&nbsp;
+                                <input type="radio" name="1" id="i21" value="2" onclick="javascript:validarValor(this)">
+                                <label for="i21">2</label>&nbsp;
+                                <input type="radio" name="1" id="i31" value="3" onclick="javascript:validarValor(this)">
+                                <label for="i31">3</label>&nbsp;
+                                <input type="radio" name="1" id="i41" value="4" onclick="javascript:validarValor(this)">
+                                <label for="i41">4</label>&nbsp;
+                                <input type="radio" name="1" id="i51" value="5" onclick="javascript:validarValor(this)">
+                                <label for="i51">5</label>
+                        </td>
+                        <td width="30">
+                            <input type="hidden" name="h1" id="<%= data.questao.h1 %>" value="<%= data.questao.h1 %>" class="form-control">
+                            <input type="hidden" name="v1" id="v1" value="" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><%= data.questao.b %></td>
+                        <td width="260">
+                            <input type="radio" name="2" id="i12" value="1" onclick="javascript:validarValor(this)">
+                            <label for="i12">1</label>&nbsp;
+                            <input type="radio" name="2" id="i22" value="2" onclick="javascript:validarValor(this)">
+                            <label for="i22">2</label>&nbsp;
+                            <input type="radio" name="2" id="i32" value="3" onclick="javascript:validarValor(this)">
+                            <label for="i32">3</label>&nbsp;
+                            <input type="radio" name="2" id="i42" value="4" onclick="javascript:validarValor(this)">
+                            <label for="i42">4</label>&nbsp;
+                            <input type="radio" name="2" id="i52" value="5" onclick="javascript:validarValor(this)">
+                            <label for="i52">5</label>
+                        </td>
+                        <td width="30">
+                            <input type="hidden" name="h2" id="<%= data.questao.h2 %>" value="<%= data.questao.h2 %>" class="form-control">
+                            <input type="hidden" name="v2" id="v2" value="" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><%= data.questao.c %></td>
+                        <td width="260">
+                            <input type="radio" name="3" id="i13" value="1" onclick="javascript:validarValor(this)">
+                            <label for="i13">1</label>&nbsp;
+                            <input type="radio" name="3" id="i23" value="2" onclick="javascript:validarValor(this)">
+                            <label for="i23">2</label>&nbsp;
+                            <input type="radio" name="3" id="i33" value="3" onclick="javascript:validarValor(this)">
+                            <label for="i33">3</label>&nbsp;
+                            <input type="radio" name="3" id="i43" value="4" onclick="javascript:validarValor(this)">
+                            <label for="i43">4</label>&nbsp;
+                            <input type="radio" name="3" id="i53" value="5" onclick="javascript:validarValor(this)">
+                            <label for="i53">5</label>
+                        </td>
+                        <td width="30">
+                            <input type="hidden" name="h3" id="<%= data.questao.h3 %>" value="<%= data.questao.h3 %>" class="form-control">
+                            <input type="hidden" name="v3" id="v3" value="" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><%= data.questao.d %></td>
+                        <td width="260">
+                            <input type="radio" name="4" id="i14" value="1" onclick="javascript:validarValor(this)">
+                            <label for="i14">1</label>&nbsp;
+                            <input type="radio" name="4" id="i24" value="2" onclick="javascript:validarValor(this)">
+                            <label for="i24">2</label>&nbsp;
+                            <input type="radio" name="4" id="i34" value="3" onclick="javascript:validarValor(this)">
+                            <label for="i34">3</label>&nbsp;
+                            <input type="radio" name="4" id="i44" value="4" onclick="javascript:validarValor(this)">
+                            <label for="i44">4</label>&nbsp;
+                            <input type="radio" name="4" id="i54" value="5" onclick="javascript:validarValor(this)">
+                            <label for="i54">5</label>
+                        </td>
+                        <td>
+                            <input type="hidden" name="h4" id="<%= data.questao.h4 %>" value="<%= data.questao.h4 %>" class="form-control">
+                            <input type="hidden" name="v4" id="v4" value="" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row"><%= data.questao.e %></td>
+                        <td width="260">
+                            <input type="radio" name="5" id="i15" value="1" onclick="javascript:validarValor(this)">
+                            <label for="i15">1</label>&nbsp;
+                            <input type="radio" name="5" id="i25" value="2" onclick="javascript:validarValor(this)">
+                            <label for="i25">2</label>&nbsp;
+                            <input type="radio" name="5" id="i35" value="3" onclick="javascript:validarValor(this)">
+                            <label for="i35">3</label>&nbsp;
+                            <input type="radio" name="5" id="i45" value="4" onclick="javascript:validarValor(this)">
+                            <label for="i45">4</label>&nbsp;
+                            <input type="radio" name="5" id="i55" value="5" onclick="javascript:validarValor(this)">
+                            <label for="i55">5</label>
+                        </td>
+                        <td width="30">
+                            <input type="hidden" name="h5" id="<%= data.questao.h5 %>" value="<%= data.questao.h5 %>" class="form-control">
+                            <input type="hidden" name="v5" id="v5" value="" class="form-control">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="rodape" style="text-align:center">
+            <a href="#" class="btn btn-primary btn-lg active"  style="width:48%" role="button" aria-pressed="true" onClick="javascript:EnviarPesquisa();">Avançar</a>
+        </div>
+    </form>
+</body>
+</html>

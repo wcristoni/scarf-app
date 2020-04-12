@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset=”utf-8″>
+        <meta name=”viewport” content=”width=device-width, initial-scale=1, shrink-to-fit=no”>
+        <title>SCARF | Login Page</title>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" crossorigin="anonymous">
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script type="text/javascript">
+
+            window.history.forward(1);
+            
+            $(document).ready(function(){
+                $(document).on('submit', '#formCadastro', function(){
+                    var pwd = document.getElementById('senha').value;
+                    if (document.getElementById('senha').value != document.getElementById('confirmacao').value){
+
+                        $( "#dialog-senha" ).dialog({
+                            resizable: false,
+                            height:220,
+                            
+                            modal: true,
+
+                            buttons: {
+                                "Ok": function() {
+                                    $( this ).dialog( "close" );
+                                }
+                            }
+                        });
+
+                        return false;
+
+                    } 
+                    
+                    if  (document.getElementById('email').value != ''){
+                        if  (document.getElementById('email').value.indexOf("@itau-unibanco.com.br")  == -1){
+
+                            $( "#dialog-email" ).dialog({
+                                resizable: false,
+                                height:220,
+                                
+                                modal: true,
+
+                                buttons: {
+                                    "Ok": function() {
+                                        $( this ).dialog( "close" );
+                                    }
+                                }
+                            });
+                            return false;
+                        }
+                    }
+               
+                    if ( pwd.length < 8){
+                        $( "#dialog-senha-curta" ).dialog({
+                            resizable: false,
+                            height:220,
+                            
+                            modal: true,
+
+                            buttons: {
+                                "Ok": function() {
+                                    $( this ).dialog( "close" );
+                                }
+                            }
+                        });
+                        return false;
+                    }
+                    
+                    return true;
+                });
+            });
+
+            // // SALVAR
+            $(document).ready(function(){
+                $(document).on('click', '#salvar', function(){
+                    // SE PRECISAR FAZER ALGUMA VALIDACAO NO ON-CLICK
+                });
+            });
+
+            // CANCELAR
+            $(document).ready(function(){
+                $(document).on('click', '#cancelar', function(){
+                    //TODO
+                    $( "#caixa-confirmacao" ).dialog({
+                        resizable: false,
+                        height:200,
+                        
+                        modal: true,
+
+                        buttons: {
+                            "Sim": function() {
+                            $( this ).dialog( "close" );
+                                window.location.replace("/");
+                            },
+                            "Não": function() {
+                            $( this ).dialog( "close" );
+                                console.log('operacao nao cancelada');
+                            }
+                        }
+                    });
+                });
+            });
+
+            function ocultar_div(){
+                $('#caixa-confirmacao').hide();
+                $('#dialog-senha').hide();
+                $('#dialog-email').hide();
+                $('#dialog-senha-curta').hide();
+                $('#dialog-2').hide();
+                $('#dialog-3').hide();
+            }
+
+            $(window).on('load',function(){
+                ocultar_div();
+
+                var iAcao = parseInt(document.getElementById('acao').value);
+
+                if (iAcao == 2){
+                    //alert('usuário já cadastrado no sistema');
+                    $( "#dialog-2" ).dialog({
+                            resizable: false,
+                            height:220,
+
+                            modal: true,
+
+                            buttons: {
+                                "Ok": function() {
+                                    $( this ).dialog( "close" );
+                                }
+                            }
+                        });
+                } 
+
+
+                else if (iAcao == 3){
+                    // alert('login ou matrícula associado a outro usuário');
+                    $( "#dialog-3" ).dialog({
+                            resizable: false,
+                            height:220,
+                            
+                            modal: true,
+
+                            buttons: {
+                                "Ok": function() {
+                                    $( this ).dialog( "close" );
+                                }
+                            }
+                        });
+                }
+                    
+            });
+        </script>
+    </head>
+<body>
+    <div class="container">
+        <br><br>
+        <div class="d-flex justify-content-center h-100">
+            <div class="card" style="box-shadow: lightgray 2px 2px 1px; width: 450px;">
+                <div class="card-header">
+                    
+                    <table>
+                        <tr>
+                            <td width="50"><img src="https://www.vippng.com/png/detail/8-87659_clipart-big-image-png-transparent-background-user-icon.png" height="50" width="50" style="border-style: solid;border:0.5;border-color: darkgray;"></td>
+                            <td width="400"><div class="text-center"><h5>Cadastro de Novo Usuário</h5></div></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-body">
+                    <form action="/cadastro" method="POST" id="formCadastro">
+                        <input type="hidden" id="acao" name="acao" value="<%= (data.orientacao == undefined) ? 1 : data.orientacao %>">
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Nome Completo" value="<%= (data.usuario == undefined) ? '' : data.usuario %>" required>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="text" name="apelido" id="apelido" class="form-control" placeholder="Informe seu LOGIN" value="<%= (data.apelido == undefined) ? '' : data.apelido %>" required>
+
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="text" name="matricula" id="matricula" class="form-control" placeholder="Informe a MATRÍCULA" value="<%= (data.matricula == undefined) ? '' : data.matricula %>" required>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Informe aqui seu e-mail corporativo" value="<%= (data.email == undefined) ? '' : data.email %>" required>
+                        </div>
+                        
+                        <div class="input-group form-group">
+                
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha" required>	
+                            
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" name="confirmacao" id="confirmacao" class="form-control" placeholder="Confirme a senha" required>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend btn-block">
+                                <p class="text-center font-weight-light btn-block">
+                                    A senha informada é para acesso <strong>APENAS</strong> à pesquisa.<br>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="container">
+                            <div class="row" role="group">
+                                
+                                <div class="col-sm">
+                                    <input type="button" value="Cancelar" name="cancelar" id="cancelar" class="btn btn-outline-secondary btn-md btn-block">
+                                </div>	
+        
+                                <div class="col-sm">
+                                    <input type="submit" value="Salvar" name="salvar" id="salvar" class="btn btn-primary btn-md btn-block">    
+                                </div>
+                                
+                            </div>
+                    
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="text-center font-weight-light">
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="caixa-confirmacao" title="Confirmação">
+        <small>
+            <p>Confirma o cancelamento do cadastro?</p>
+        </small>
+    </div>
+
+    <div id="dialog-senha" title="Ação Necessária">
+        <small>
+            <p>As senhas informadas são diferentes.<br>Por favor, corriga e refaça a operação.</p>
+        </small>
+    </div>
+
+    <div id="dialog-senha-curta" title="Ação Necessária">
+        <small>
+            <p>A senha informada não atende aos requisitos mínimos de segurança.</p>
+            <p>Informe uma senha com 8 caracteres (ou mais).</p>
+        </small>
+    </div>
+
+    <div id="dialog-email" title="Ação Necessária">
+        <small>
+            <p>O e-mail informado não foi indicado por nenhuma empresa participante.</p>
+            <p>Por favor, informe um e-mail válido ou peça indicação à seu empregador.</p>
+        </small>
+    </div>
+
+    <div id="dialog-2" title="Erro">
+        <small>
+            <p>Usuário já cadastrado!</p>
+            <p>Caso tenha esquecido a senha fale com o administrador para recuperá-la.</p>
+        </small>
+    </div>
+
+    <div id="dialog-3" title="Erro">
+        <small>
+            <p>Login ou matrícula associado a outro usuário.</p>
+            <p>Por favor, verifique as informações e tente novamente.</p>
+        </small>
+    </div>
+
+</body>
+</html>

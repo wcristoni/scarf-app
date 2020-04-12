@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset=”utf-8″>
+    <meta name=”viewport” content=”width=device-width, initial-scale=1, shrink-to-fit=no”>
+    <title>SCARF | Resultado</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script type="text/javascript">
+        function EnviarPesquisa(){
+            document.forms[0].submit();
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <style type="text/css">
+        divGrafico{width: 450; height: 300;
+            margin: auto;
+            width: 50%;
+            border: 3px solid green;
+            padding: 10px;
+        }
+
+        /* canvas {
+            border: 1px solid lightgray;
+            margin-right: auto;
+            margin-left: auto;
+        } */
+        /* div {
+            border: 1px solid black;
+            margin-right: 2;
+            margin-left: 3;
+        } */
+        .container-canvas {
+            margin-right: auto;
+            margin-left: auto;
+            align-content: center;
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body style="font-size: 1rem;">
+
+    <div id="rodape"  class="container-fluid">
+        <h2><strong>Resultado</strong><h2>
+    </div>
+    
+    <form action="/" method="GET">
+        <input type="hidden" id="questionario" name="questionario" value="<%= JSON.stringify(registro.questionario) %>">
+        <div id="divGrafico" style="width: 450; height: 300;">
+            
+            <p class="container-fluid" style="text-align:center">
+                <strong><label class="text-uppercase"><%= registro.usuario %></label></strong>
+                <br><%= Date().toLocaleString('pt-BR')%>
+            </p>
+            <div id="geral" class="container-fluid">
+            
+                <div class="container-canvas">
+                    <canvas id="grafico"  width="450" height="300" ></canvas>
+                </div>
+                <div class="container-canvas row">
+                    <table class="table-bordered">
+                        <tbody>
+                            <td width="25" style="border-color: white;border-right-color:lightgray;">&nbsp;</td>
+                            <td width="105"><div class="text-center" id="dStatus" name="dStatus">10</div></td>
+                            <td width="105"><div class="text-center" id="dCerteza" name="dCerteza">10</div></td>
+                            <td width="105"><div class="text-center" id="dAutonomia" name="dAutonomia">10</div></td>
+                            <td width="105"><div class="text-center" id="dRelacionamento" name="dRelacionamento">10</div></td>
+                            <td width="105"><div class="text-center" id="dJustica" name="dJustica">10</div></td>
+                            <td width="50" style="border-color: white;">&nbsp;</td>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                
+                <script>
+                    var ctx = $("#grafico");
+                    
+                    function sumarizarDado(){
+                        
+                        var questionario = JSON.parse(document.getElementById('questionario').value);
+                        var resultados = [];
+                        var auxiliar = 0;
+
+                        // ## STATUS
+                        var totalStatus = parseInt(questionario.reduce( function( prevVal, elem ) {
+                            return parseInt(prevVal) + parseInt(elem.S);
+                        }, 0 ));
+                        auxiliar = ((totalStatus/210)*100).toFixed(2);
+                        resultados.push( auxiliar );
+                        document.getElementById('dStatus').innerText = auxiliar.toLocaleString('pt-BR') + '%';
+
+                        // ## CERTEZA
+                        var totalCerteza = parseInt(questionario.reduce( function( prevVal, elem ) {
+                            return parseInt(prevVal) + parseInt(elem.C);
+                        }, 0 ));
+                        auxiliar = ((totalCerteza/210)*100).toFixed(2);
+                        resultados.push( auxiliar );
+                        document.getElementById('dCerteza').innerText = auxiliar.toLocaleString('pt-BR') + '%';
+
+                        // ## AUTONOMIA
+                        var totalAutonomia = parseInt(questionario.reduce( function( prevVal, elem ) {
+                            return parseInt(prevVal) + parseInt(elem.A);
+                        }, 0 ));
+                        auxiliar = ((totalAutonomia/210)*100).toFixed(2) ;
+                        resultados.push( auxiliar );
+                        document.getElementById('dAutonomia').innerText = auxiliar.toLocaleString('pt-BR') + '%';
+
+                        // ## RELACIONAMENTO
+                        var totalRelacionamento = parseInt(questionario.reduce( function( prevVal, elem ) {
+                            return parseInt(prevVal) + parseInt(elem.R);
+                        }, 0 ));
+                        auxiliar = ((totalRelacionamento/210)*100).toFixed(2) ;
+                        resultados.push( auxiliar );
+                        document.getElementById('dRelacionamento').innerText = auxiliar.toLocaleString('pt-BR') + '%';
+
+                        // ## JUSTICA
+                        var totalJustica = parseInt(questionario.reduce( function( prevVal, elem ) {
+                            return parseInt(prevVal) + parseInt(elem.F);
+                        }, 0 ));
+                        auxiliar = ((totalJustica/210)*100).toFixed(2) ;
+                        resultados.push( auxiliar );
+                        document.getElementById('dJustica').innerText = auxiliar.toLocaleString('pt-BR') + '%';
+
+                        console.log(resultados);
+                        
+                        return resultados;
+                    }
+
+                    var myChart = new Chart(ctx, {
+                        type: "bar",
+                        data: {
+                            labels: ["Status", "Certeza", "Autonomia", "Relacionamento", "Foco na Justiça"],
+                            datasets: [{
+                                label: "Canal Neurônico",
+                                fillColor: "637b85",
+                                strokeColor: "637b85",
+                                backgroundColor: [  "rgb(255, 217, 102)",
+                                                    "rgb(214, 220, 228)",
+                                                    "rgb(198, 224, 180)",
+                                                    "rgb(48, 84, 150)",
+                                                    "rgb(0, 176, 240)"],
+                                data: sumarizarDado(),
+
+                            }]
+                        },
+                        options:{
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        suggestedMin: 0,
+                                        suggestedMax: 25
+                                    }
+                                }]
+                            },
+                            legend:{display:false} // , responsive:false
+                        }
+                    });
+                </script>
+            </div>
+            <br>
+            <div id="rodape" style="text-align:center">
+                <a href="#" class="btn btn-primary btn-lg active"  style="width:48%" role="button" aria-pressed="true" onClick="javascript:EnviarPesquisa();">Concluir</a>
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>

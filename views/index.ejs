@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset=”utf-8″>
+        <meta name=”viewport” content=”width=device-width, initial-scale=1, shrink-to-fit=no”>
+        <title>SCARF | Instruções</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+		
+		<script type="text/javascript">
+			window.history.forward(1);
+		</script>
+    </head>
+    <body><br>
+        <div id="titulo"  class="row d-flex justify-content-center">
+            <p><h3>Instruções<h3></p>
+        </div>
+        <div id="geral" class="row d-flex justify-content-center">
+            <div id="conteudo" class="col-md-6">
+                <form action="/pergunta" method="POST">
+                    <p class="text-justify"><small>O cérebro é uma máquina de processamento que registra eventos como recompensa ou ameaça sem que tenhamos clara consciência disso.</p>
+                    <p class="text-justify">O exercício proposto consiste em medir por qual canal neurônico você ganha ou perde performance. <br><br>
+                        Será que o status – a posição que você ocupa em relação aos outros – determina como você reage a pressão? <br>
+                        Ou será a certeza, ou seja, o quanto você tem de informação, que aciona a leitura de perigo ou prazer? <br>
+                        Ou ainda a autonomia - o quanto sua liberdade está impactada ou garantida? <br>
+                        Será que você ganha ou perde performance em função da maneira que você percebe a qualidade de seus relacionamentos? <br>
+                        Ou será a percepção do que é justo que determina como você interpreta uma situação, lendo nela risco ou retorno?</p>
+                    <p class="text-justify">Estes cinco canais neurônicos – status, certeza, autonomia, relacionamento e foco na justiça – determinam como uma pessoa perde ou potencializa performance, especialmente em situações de mudança.</p>
+                    <p class="text-justify">Você vai examinar 14 perguntas, cada uma com 5 alternativas. Na coluna B do questionário, distribuas os valores de 1 até 5. Atribua um valor entre 1 (isso não me afeta) até 5 (isso me afeta muito). Não repita o mesmo valor na mesma sequência de alternativas.</p>
+                    <input type="hidden" name="pergunta" id="pergunta" value="<%= data.pergunta %>">
+                    <input type="hidden" name="usuario" id="usuario" value="<%= data.usuario %>">
+                    <br><button type="submit" class="btn btn-primary btn-lg btn-block">Iniciar o Questionário</button>
+                </form> 
+            </div>
+        </div>
+    </body>
+</html>
