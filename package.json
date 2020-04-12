@@ -25,7 +25,6 @@
   "homepage": "https://github.com/wcristoni/scarf-app#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "chart.js": "^2.9.3",
     "dotenv": "^7.0.0",
     "ejs": "^2.7.4",
     "express": "^4.17.1",
