@@ -43,8 +43,10 @@ app.use('/', routePergunta);
 
 app.set('view engine', 'ejs');
 
-app.listen(443, function(){
-    console.log('A aplicação está rodando na porta 443!');
+var porta = process.env.PORT || 8080;
+
+app.listen(porta, function(){
+    console.log('A aplicação está rodando na porta ' + porta + '!');
 });
 
 function validar(err){
