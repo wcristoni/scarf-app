@@ -43,7 +43,7 @@ app.use('/', routePergunta);
 
 app.set('view engine', 'ejs');
 
-var porta = process.env.PORT || 8080;
+var porta = process.env.PORT || 8081;
 
 app.listen(porta, function(){
     console.log('A aplicação está rodando na porta ' + porta + '!');
