@@ -18,10 +18,9 @@
 PS: Don't forget replace the string <PASSWORD> with your personal password that has been created in step 4.<br><br>
 
 <b><b1>Things to do before start your Project</b1></b><br>
-1. Clone this repository <code>git clone https://github.com/wcristoni/crud-mongodb.git</code><br>
+1. Clone this repository <code>git clone https://github.com/wcristoni/scarf-app.git</code><br>
 2. Create ".env" file in project directory, in this file put the string <code>MONGO_DB='your URI connection string'</code> and save it<br>
 3. Install the dependencies for your Node JS: <code>npm install</code> <br>
 4. Start your Node JS local: <code>npm run dev</code> <br>
-5. Access the url http://localhost:3000 and enjoy!<br><br>
-PS: This site was prepared to receive a string in the JSON format, like this:<br>
-<code>{"url": "www.teste.com.br","tags": ["tag1","tag2"],"usuario": "User1"}</code>
+5. Access the url http://localhost:8081 and enjoy!<br><br>
+
