@@ -9,7 +9,7 @@ let dbPesquisa = [];
 let questionario = [];
 questionario.push({});
 
-// #1
+// #1 C, R, F, A, S
 let pergunta = {  'situacao': 1,
                 'titulo': 'Várias pessoas do time ao qual você pertence estão em desacordo e procuram por você para ajudá-los.', 
                   'a':'Você esclarece o que eles esperam de você.', 
@@ -18,8 +18,8 @@ let pergunta = {  'situacao': 1,
                   'd':'Você tenta resolver o problema sozinho',
                   'e':'Você gostaria de estar no comando de modo que você pudesse dizer-lhes o que fazer',
                   'h1':'C',
-                  'h2':'F',
-                  'h3':'R',
+                  'h2':'R',
+                  'h3':'F',
                   'h4':'A',
                   'h5':'S'
             };
@@ -41,7 +41,7 @@ pergunta = {  'situacao': 2,
             };
 questionario.push(pergunta);
 
-// # 3 - F, C, A, S, R
+// # 3 - F, C, A, R, S
 pergunta = {  'situacao': 3,
                 'titulo': 'Seu chefe lhe dá um feedback de que você não se saiu bem em um importante projeto. Você:', 
                 'a':'Pensa que o feedback leva em conta só um lado', 
@@ -52,8 +52,8 @@ pergunta = {  'situacao': 3,
                 'h1':'F',
                 'h2':'C',
                 'h3':'A',
-                'h4':'S',
-                'h5':'R'
+                'h4':'R',
+                'h5':'S'
             };
 questionario.push(pergunta);
 
@@ -73,7 +73,7 @@ pergunta = {  'situacao': 4,
             };
 questionario.push(pergunta);
 
-// #5 - R, C, F, S, A
+// #5 - R, S, C, F, A
 pergunta = {  'situacao': 5,
                 'titulo': 'É seu primeiro dia no cargo de gerente e você está pensando em seu novo time. A primeira reunião que você marca é:', 
                 'a':'Um almoço descontraído para conhecer uns aos outros, com todo o time. ', 
@@ -82,9 +82,9 @@ pergunta = {  'situacao': 5,
                 'd':'Com o RH para comparar seu salário com o do resto do time',
                 'e':'Com cada membro do time para descobrir como eles querem que você proceda',
                 'h1':'R',
-                'h2':'C',
-                'h3':'F',
-                'h4':'S',
+                'h2':'S',
+                'h3':'C',
+                'h4':'F',
                 'h5':'A'
             };
 questionario.push(pergunta);
@@ -105,7 +105,7 @@ pergunta = {  'situacao': 6,
             };
 questionario.push(pergunta);
 
-// #7 - R, S, C, A, F
+// #7 - C, R, S, A, F
 pergunta = {  'situacao': 7,
                 'titulo': 'Sua família está pressionando para que você passe mais tempo com eles. Você?', 
                 'a':'Se pergunta como fazê-los felizes', 
@@ -113,15 +113,15 @@ pergunta = {  'situacao': 7,
                 'c':'Sente-se frustrado pois eles não entendem quão ocupado você está',
                 'd':'Concorda, mas pede a eles para deixar o planejamento com você',
                 'e':'Sente-se incomodado porque eles não lhe dão crédito algum pelo esforço que você obviamente faz',
-                'h1':'R',
-                'h2':'S',
-                'h3':'C',
+                'h1':'C',
+                'h2':'R',
+                'h3':'S',
                 'h4':'A',
                 'h5':'F'
             };
 questionario.push(pergunta);
 
-// #8 - C, A, S, R, F
+// #8 - C, S, A, R, F
 pergunta = {  'situacao': 8,
                 'titulo': 'Você está procurando um novo carro. Como você decide sobre qual automóvel comprar?', 
                 'a':'Você lê e compara análises em revistas especializadas', 
@@ -130,8 +130,8 @@ pergunta = {  'situacao': 8,
                 'd':'Sua família conhece bem um revendedor perto de casa. Você vai comprar com eles.',
                 'e':'Você visita sites da internet para achar a melhor oferta',
                 'h1':'C',
-                'h2':'A',
-                'h3':'S',
+                'h2':'S',
+                'h3':'A',
                 'h4':'R',
                 'h5':'F'
             };
@@ -153,7 +153,7 @@ pergunta = {  'situacao': 9,
             };
 questionario.push(pergunta);
 
-// #10 - A, S, F, R, C
+// #10 - R, S, A, F, C
 pergunta = {  'situacao': 10,
                 'titulo': 'Você está levando um velho amigo para jantar. O que é mais provável que você faça:', 
                 'a':'Ir a seu bistrô favorito, onde todo mundo se conhece', 
@@ -161,10 +161,10 @@ pergunta = {  'situacao': 10,
                 'c':'Descobre que tipo de comida seu amigo aprecia e então escolhe',
                 'd':'Liga para seu amigo e decide junto com ele',
                 'e':'Vai naquele onde as avaliações são sempre positivas',
-                'h1':'A',
+                'h1':'R',
                 'h2':'S',
-                'h3':'F',
-                'h4':'R',
+                'h3':'A',
+                'h4':'F',
                 'h5':'C'
             };
 questionario.push(pergunta);
@@ -185,7 +185,7 @@ pergunta = {  'situacao': 11,
             };
 questionario.push(pergunta);
 
-// #12 - S, R, A, F, C
+// #12 - S, F, A, R, C
 pergunta = {  'situacao': 12,
                 'titulo': 'Seu gestor quer levá-lo para celebrar um contrato recente. Você:', 
                 'a':'Se sente lisonjeado por ser reconhecido pelo bom trabalho', 
@@ -194,14 +194,14 @@ pergunta = {  'situacao': 12,
                 'd':'Sugere fazer algo com o time todo ao invés de irem só vocês dois',
                 'e':'Esclarece com seu chefe e exatamente o que foi que você fez que o deixou satisfeito',
                 'h1':'S',
-                'h2':'R',
+                'h2':'F',
                 'h3':'A',
-                'h4':'F',
+                'h4':'R',
                 'h5':'C'
             };
 questionario.push(pergunta);
 
-// #13 - F, C, A, R, S
+// #13 - A, C, F, R, S
 pergunta = {  'situacao': 13,
                 'titulo': 'Seu time está trabalhando em um projeto importante que está parado aguardando decisões de outras áreas. Você:', 
                 'a':'Se sente em desvantagem por conta de toda a burocracia', 
@@ -209,9 +209,9 @@ pergunta = {  'situacao': 13,
                 'c':'Gostaria que os outros entendessem o quanto isso atrasa vocês',
                 'd':'Se preocupa com o impacto que isso terá no estado de ânimo de seu time',
                 'e':'Fica estressado sobre o impacto que isso trará para sua credibilidade',
-                'h1':'F',
+                'h1':'A',
                 'h2':'C',
-                'h3':'A',
+                'h3':'F',
                 'h4':'R',
                 'h5':'S'
             };
@@ -237,8 +237,19 @@ questionario.push(pergunta);
 
 let dbData = [];
 let resultados = [];
+
+function imprimir(pergunta) {
+    console.log(pergunta);
+    console.log('\n ');
+}
+
 router.post('/pergunta', (req,res) => {
 
+    // TESTE
+    console.log('valores das perguntas');
+
+    questionario.forEach(imprimir);
+    
     var pergunta = req.body.pergunta; 
 
     var usuario = utils.Descripta(req.body.usuario); 
