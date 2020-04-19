@@ -39,12 +39,15 @@ app.use('/', routeCadastro);
 var routeValidacao  = require('./routes/validacao');
 app.use('/', routeValidacao);
 
+var routePainel  = require('./routes/painel');
+app.use('/', routePainel);
+
 var routePergunta  = require('./routes/pergunta');
 app.use('/', routePergunta);
 
 app.set('view engine', 'ejs');
 
-var porta = process.env.PORT || 8081;
+var porta = process.env.PORT || 8082;
 
 app.listen(porta, function(){
     console.log('##########################################')

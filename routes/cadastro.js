@@ -84,7 +84,8 @@ router.post('/cadastro', (req, res)=>{
                               'email': cripto.Encripta(email),
                          'orientacao': ctrl, 
                            'pergunta': '0',
-                       'matriculaAux': matriculaAux};
+                       'matriculaAux': matriculaAux,
+                             'origem': '0'};
 
             console.log('acao -> ' + ctrl );
             console.log(data);
@@ -94,9 +95,8 @@ router.post('/cadastro', (req, res)=>{
             // 3: login ou matrícula associado a outro usuário  -> login (recuparar senha ou falar com o admin)
             
             if (ctrl == 1)
-                res.render('index.ejs', { 'data': data });
-                // ORIGINAL
-                // res.render('index.ejs',{ data: {'pergunta':(parseInt(0)), 'usuario': cripto.Encripta(usuario), 'apelido': apelido, 'matricula': matricula} });
+                // res.render('index.ejs', { 'data': data });
+                res.render('painel.ejs', { 'data': data });
             else{
                 data.usuario = usuario;
                 data.email = email;

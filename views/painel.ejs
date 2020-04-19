@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset=”utf-8″>
+        <meta name=”viewport” content=”width=device-width, initial-scale=1, shrink-to-fit=no”>
+        <title>SCARF | Painel do Usuário </title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">    
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+
+      window.history.forward(1);
+      
+      // CANCELAR
+      $(document).ready(function(){
+          $(document).on('click', '#cancelar', function(){
+            $( "#caixa-confirmacao" ).dialog({
+              resizable: false,
+              height:200,
+              
+              modal: true,
+
+              buttons: {
+                  "Sim": function() {
+                  $( this ).dialog( "close" );
+                      window.location.replace("/");
+                  },
+                  "Não": function() {
+                  $( this ).dialog( "close" );
+                      console.log('operacao nao cancelada');
+                  }
+              }
+            });
+          });
+      });
+
+      function ocultar_div(){
+          $('#caixa-confirmacao').hide();
+      }
+
+      $(window).on('load',function(){
+          ocultar_div();
+      });
+    </script>
+
+    </head>
+    <body><br>
+
+      <div class="d-flex justify-content-center">
+        <div class="card" style="box-shadow: lightgray 2px 2px 1px; width:450px">
+          <div class="card-header text-center">
+            <p><h4>Painel do Usuário<h4></p>
+          </div>
+          <div class="card-body font-weight-light" style="width:450px">
+
+            <div>
+              <table>
+                <td><img class="mfp-img" alt="SCARF" src="https://www.discoveryinaction.com.au/wp-content/uploads/2014/04/SCARF.png" style="max-width:100px;"></td>
+                <td>&nbsp;</td>
+                <td>
+                  <p class="text-justify">
+                    Esta pesquisa ajuda na identicação do que faz você ganhar ou perder <b>performance</b>. <br>
+                    Ela foi baseada no estudo e publicação do Dr. David Rock.
+                  </p>
+                </td>
+              </table>
+
+            </div>
+
+            <form action="/painel" method="POST">
+              <input type="hidden" name="origem" id="origem" value="<%= data.origem %>">
+              <input type="hidden" name="usuario" id="usuario" value="<%= data.usuario %>">
+              <br>
+              <!---->
+              <div class="container">
+                <div class="row" role="group">
+                  
+                  <div class="col-md">
+                    <input type="button" value="Cancelar" name="cancelar" id="cancelar" class="btn btn-outline-secondary btn-md btn-block"> 
+                  </div>	
+
+                  <div class="col-md">
+                    <button type="submit" class="btn btn-primary btn-md btn-block">Responder à Pesquisa</button>    
+                  </div>
+                  
+                </div>
+        
+            </div>
+              <!---->
+              
+            </form> 
+
+          </div>
+          
+          <div class="card-footer font-weight-light text-center"  style="width:450px">
+            Se você já respondeu a essa pesquisa ao prosseguir <br>você verá o APENAS o seu resultado.
+          </div>
+        </div>
+
+      </div>
+
+      <div id="caixa-confirmacao" title="Confirmação">
+          <small>
+              <p>Confirma a saída?</p>
+          </small>
+      </div>
+        
+    </body>
+</html>

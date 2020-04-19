@@ -38,7 +38,8 @@ router.post('/validacao', (req, res)=>{
 
         if (ctrl == 0)
             // login ok
-            res.render('index.ejs',{ data: {'pergunta':(parseInt(0)), 'usuario': dbAux[0].usuario} });
+            // res.render('index.ejs',{ data: {'pergunta':(parseInt(0)), 'usuario': dbAux[0].usuario} });
+            res.render('painel.ejs',{ data: {'pergunta':(parseInt(0)), 'usuario': dbAux[0].usuario, 'origem':(parseInt(1))} });
         else
             // 1 = usuario nao encontrado
             // 2 = senha incorreta
