@@ -24,10 +24,10 @@
   },
   "homepage": "https://github.com/wcristoni/scarf-app#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "dotenv": "^7.0.0",
     "ejs": "^2.7.4",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "helmet": "^3.22.0",
     "mongodb": "^3.5.5",
     "promise": "^8.1.0"
